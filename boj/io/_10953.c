@@ -7,10 +7,9 @@ int main()
 {
     int t;
     int a, b;
-
     char line[MAXLEN], *tok;
-    scanf("%d", &t);
-    printf("%d", t);
+
+    fgets(line, MAXLEN, stdin), sscanf(line, "%d", &t);
     while (t--) {
         fgets(line, MAXLEN, stdin);
         a = atoi(strtok(line, ","));
