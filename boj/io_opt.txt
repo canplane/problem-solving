@@ -1,0 +1,5 @@
+#include <bits/stdc++.h>
+
+ios::sync_with_stdio(false);  // c++, c의 표준 입출력 혼용을 해제 -> 독립된 버퍼 사용. 그리고 thread-safe해지지 않음.
+cin.tie(NULL);  // untie되면 cout << "name:"; cin >> name;에서 "name:"이 콘솔 상에서 출력되지 않는다고 함.
+cout.tie(NULL);
