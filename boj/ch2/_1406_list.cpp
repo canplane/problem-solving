@@ -9,7 +9,7 @@ int main()
     int N;
 
     cin >> s;
-    list<char> l(s.begin(), s.end());
+    list<char> l(s.begin(), s.end());  // 반복자 구간 (s.begin(), s.end())으로 초기화된 원소를 갖는다.
     auto now = l.end();
 
     cin >> N;
@@ -25,7 +25,7 @@ int main()
             if (now != l.end()) now++;
             break;
         case 'B':
-            if (now != l.begin()) now = l.erase(--now);  //
+            if (now != l.begin()) now = l.erase(--now);  // bidirectional iterator니까 --, ++만 가능
             break;
         case 'P':
             cin >> tmp;

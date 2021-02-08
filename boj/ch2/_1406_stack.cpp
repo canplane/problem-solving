@@ -3,9 +3,10 @@
 
 int main()
 {
+    int N, i;
     std::stack<char> l, r;  // stack이 생각보다 빠르다! 따로 구현할 필요 없는 듯.
     char s[20], c;
-    int N, i;
+
     while ((c = getchar()) != '\n') l.push(c);
     scanf("%d", &N);
     while (N--) {

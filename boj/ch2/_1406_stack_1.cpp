@@ -4,10 +4,10 @@ using namespace std;
 
 int main()
 {
+    int N, i;
     stack<char> l, r;  // stack이 생각보다 빠르다! 따로 구현할 필요 없는 듯.
     string s;
     char c;
-    int N, i;
     
     cin >> s;
     for (i = 0; i < s.size(); i++) l.push(s[i]);
