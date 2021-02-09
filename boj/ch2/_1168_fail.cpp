@@ -1,18 +1,24 @@
 #include <cstdio>
-#include <queue>
+#include <vector>
 
 int main()
 {
-    int N, K, i, j;
+    int N, K, i;
     scanf("%d %d", &N, &K);
+    std::vector<int> v(N);
 
-    std::queue<int> q;
-    for (i = 1; i <= N; i++) q.push(i);
-    
+    for (i = 0; i < N; i++) v[i] = i + 1;
+
+    i = K - 1;
     printf("<");
-    for (i = 1; i < N; i++) {
-        for (j = 1; j < K; j++) q.push(q.front()), q.pop();
-        printf("%d, ", q.front()), q.pop();
+    while (true) {
+        if (N == 1) {
+            printf("%d", v[i]);
+            break;
+        }
+        printf("%d, ", v[i]);
+        v.erase(v.begin() + i);
+        i = ((i - 1) + K) % --N;
     }
-    printf("%d>", q.front()), q.pop();
+    printf(">");
 }
