@@ -2,7 +2,7 @@
 
 // segment tree
 // 1. N이 2의 제곱 꼴이면 높이(0부터 시작) H가 lg N인 full binary tree. 즉 노드 수는 2 * N - 1.
-// 2. N이 2의 제곱 꼴이 아니라면 높이는 ceil(lg N)인 tree.
+// 2. N이 2의 제곱 꼴이 아니라면 높이는 ceil(lg N)인 tree. -> 그러니 그냥 1, 2 케이스 모두에 대해서 높이는 ceil(lg N).
 // 높이가 H인 full binary tree의 노드 수는 2 ^ (H + 1) - 1.
 int seg[262144];  // (2 ^ (ceil(lg 100000) + 1 ) - 1) + 1 = 2 ^ 18
 
