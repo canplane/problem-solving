@@ -17,6 +17,7 @@ void dfs(int y, int x) {
     }
 }
 
+#define INF 0x7fffffff
 void bfs() {
     queue<pair<int, int>> q;
     pair<int, int> p;
@@ -27,10 +28,17 @@ void bfs() {
             if (map[y][x])
                 q.push(make_pair(y, x)), dist[y][x] = 0;
     
-    int ans = 0x7ffffff;
+    int ans = INF, prev_d = 0;
     while (!q.empty()) {
         p = q.front(), q.pop();
         y = p.first, x = p.second;
+
+        if (prev_d != dist[y][x]) {  // pruning
+            if (ans != INF)
+                break;
+            prev_d = dist[y][x];
+        }
+        
         for (int i = 0; i < 4; i++) {
             int ny = y + dy[i], nx = x + dx[i];
             if (ny == 0 || ny == N + 1 || nx == 0 || nx == N + 1)
