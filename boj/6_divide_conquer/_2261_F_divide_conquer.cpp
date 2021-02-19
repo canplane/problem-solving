@@ -1,4 +1,4 @@
-/* vector */
+// vector의 lower_bound, upper_bound가 이상하게 시간 초과 나는 모양이다. 왜 그럴까?
 
 #include <cstdio>
 #include <vector>
@@ -9,8 +9,8 @@ using namespace std;
 
 vector<pair<int, int>> v;
 
-int dist(const pair<int, int>& a, const pair<int, int>& b) {
-    return (b.first - a.first)*(b.first - a.first) + (b.second - a.second)*(b.second - a.second);
+int dist(pair<int, int> a, pair<int, int> b) {
+    return pow(b.first - a.first, 2) + pow(b.second - a.second, 2);
 }
 
 struct cmp_y {
@@ -47,7 +47,7 @@ int dc(int l, int r) {
 int main() {
     int N;
     scanf("%d", &N);
-    v.reserve(N);
+    v.resize(N);
     for (int i = 0; i < N; i++)
         scanf("%d %d", &v[i].first, &v[i].second);
     sort(v.begin(), v.end());
