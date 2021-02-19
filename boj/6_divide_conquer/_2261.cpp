@@ -1,65 +1,73 @@
 #include <cstdio>
+#include <cmath>
 #include <vector>
-#include <utility>
 #include <algorithm>
 using namespace std;
 
+const int MAX = 800000000;
+
+int n;
 vector<pair<int, int>> v;
 
-int dist(int a, int b) {
-    return (a - b)*(a - b);
-}
-int dist(pair<int, int>& a, pair<int, int>& b) {
-    return dist(a.first, b.first) + dist(a.second, b.second);
-}
-
-int search(int l, int r, int to, int d) {
-    if (l == r)
-        return l;
-    int mid = (l + r) / 2;
-    if (dist(v[mid].first, v[to].first) > d)
-        return search(mid + 1, r, to, d);
-    else
-        return search(l, mid, to, d);
-}
-
-int sweep() {
-    int min_d;
-    int prev_x, cur_x;
-
-    min_d = dist(v[0], v[1]);
-    if (v[0].first != v[1].first)
-        prev_x = 0, cur_x = 1;
-    else
-        prev_x = -1, cur_x = 0;
-
-    for (int i = 1; i < v.size(); i++) {
-        if (v[i - 1].first != v[i].first) {
-            cur_x = i;
-            if (prev_x == -1)
-                prev_x = search(0, cur_x - 1, cur_x, min_d);
-            else
-                prev_x = search(prev_x, cur_x - 1, cur_x, min_d);
-        }
-
-        if (v[i - 1].first == v[i].first)
-            min_d = min(min_d, dist(v[i - 1].second, v[i].second));
-        if (prev_x != -1) {
-            for (int j = prev_x; j < cur_x; j++) {
-                min_d = min(min_d, dist(v[j], v[i]));  //
-            }
-            prev_x = search(prev_x, cur_x - 1, cur_x, min_d);
-        }
-    }
-    return min_d;
-}
+int f(int, int);
+int dist(pair<int, int>, pair<int, int>);
 
 int main() {
-    int N;
-    scanf("%d", &N);
-    v.resize(N);
-    for (int i = 0; i < N; i++)
-        scanf("%d %d", &v[i].first, &v[i].second);
-    sort(v.begin(), v.end());
-    printf("%d", sweep());
+  scanf("%d", &n);
+  v.resize(n);
+  for (int i=0; i<n; i++) {
+    scanf("%d %d", &v[i].first, &v[i].second);
+  }
+  sort(v.begin(), v.end());// x축을 기준으로 오름차순 정렬
+  printf("%d\n", f(0, n-1));
+  return 0;
+}
+
+int f(int start, int end) {
+  int ret = MAX;
+  int ec = end - start + 1;// element count
+  if (ec <= 3) {
+    for (int i=start; i<end; i++) {
+      for (int j=i+1; j<=end; j++) {
+        ret = min (ret, dist(v[i], v[j]));
+      }
+    }// brute-force
+  }
+  else {
+    // 중앙 좌표를 기준으로 왼쪽과 오른쪽 섹션을 분할하여 계산
+    int mid = (start + end) / 2;
+    int left = f(start, mid-1);
+    int right = f(mid+1, end);
+    ret = min(left, right);
+
+    vector<pair<int, int>> tmp;
+    tmp.push_back({v[mid].second, v[mid].first});
+
+    // 중앙 좌표를 중심으로 왼쪽에 있는 것들 중 가능한 것들을 선별
+    for (int i=mid-1; i>=start; i--) {
+      if (dist({v[mid].first, 0}, {v[i].first, 0}) >= ret) break;
+      tmp.push_back({v[i].second, v[i].first});// y축 순으로 정렬
+    }
+
+    // 중앙 좌표를 중심으로 오른쪽에 있는 것들 중 가능한 것들을 선별
+    for (int i=mid+1; i<=end; i++) {
+      if (dist({v[mid].first, 0}, {v[i].first, 0}) >= ret) break;
+      tmp.push_back({v[i].second, v[i].first});// y축 순으로 정렬
+    }
+
+    sort(tmp.begin(), tmp.end());// y축 정렬
+
+    // 중앙 좌표와의 거리 중 더 가까운 좌표가 있다면 그 거리를 반환
+    for (int i=0; i<tmp.size()-1; i++) {
+      for (int j=i+1; j<tmp.size(); j++) {
+        if (pow(tmp[i].first - tmp[j].first, 2) >= ret) break;
+        ret = min(ret, dist(tmp[i], tmp[j]));
+      }
+    }
+  }
+  return ret;
+}
+
+int dist(pair<int, int> p1, pair<int, int> p2) {
+  return pow(p1.first - p2.first, 2) + pow(p1.second - p2.second, 2);
 }
