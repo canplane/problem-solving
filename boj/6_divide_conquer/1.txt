@@ -1,16 +1,20 @@
 #include <cstdio>
-
-void f(int n, int b) {
-	int r;
-	if (!n) return;
-	f(n / b, b);
-	r = n % b;
-	r += (r < 10) ? 48 : 55;
-	putchar(r);
-}
+#define MIN2(x, y) ((x) <= (y) ? (x) : (y))
 
 int main() {
-	int N, B;
-	scanf("%d %d", &N, &B);
-	f(N, B);   
+	int N, M;
+	scanf("%d %d", &N, &M);
+    
+	int ans;
+	if (N == 1)
+		ans = 1;
+	else if (N == 2)
+		ans = MIN2((M + 1)/2, 4);
+	else {
+		if (M >= 7)
+			ans = M - 2;
+		else
+			ans = MIN2(M, 4);
+	}
+	printf("%d", ans);
 }
