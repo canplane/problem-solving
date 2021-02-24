@@ -4,6 +4,7 @@
         "list": "cpp",
         "memory": "cpp",
         "utility": "cpp",
-        "vector": "cpp"
+        "vector": "cpp",
+        "functional": "cpp"
     }
 }
