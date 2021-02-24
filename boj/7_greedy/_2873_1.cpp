@@ -11,7 +11,7 @@ void horiz(int row, int col, char c) {
 		if (y == row)
 			break;
 		printf("D");
-		c = (c == 'L') ? 'R' : 'L';
+		c = (c == 'R') ? 'L' : 'R';
 	}
 }
 void vert(int row, int col, char c) {
@@ -21,7 +21,7 @@ void vert(int row, int col, char c) {
 		if (x == col)
 			break;
 		printf("R");
-		c = (c == 'U') ? 'D' : 'U';
+		c = (c == 'D') ? 'U' : 'D';
 	}
 }
 
