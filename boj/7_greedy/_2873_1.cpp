@@ -1,4 +1,8 @@
+/* 40분 */
+
 #include <cstdio>
+
+int map[1001][1001];
 
 void horiz(int row, int col, char c) {
 	for (int y = 1; ; y++) {
@@ -21,9 +25,8 @@ void vert(int row, int col, char c) {
 	}
 }
 
-int map[1001][1001], R, C;
-
 int main() {
+	int R, C;
 	scanf("%d %d", &R, &C);
 	for (int y = 1; y <= R; y++)
 		for (int x = 1; x <= C; x++)
@@ -34,7 +37,8 @@ int main() {
 	else if (C % 2)
 		vert(R, C, 'D');
 	else {
-		int min_cost = map[1][2], min_y = 1, min_x = 2;
+		int min_cost = map[1][2];
+		int min_y = 1, min_x = 2;
 		for (int y = 1; y <= R; y++)
 			for (int x = y % 2 + 1; x <= C; x += 2)
 				if (map[y][x] < min_cost)
@@ -51,7 +55,7 @@ int main() {
 		for (; x < C; x += 2)
 			printf("R"), vert(2, 2, 'U');
 		y += 2;
-
+        
 		for (; y < R; y += 2)
 			printf("D"), horiz(2, C, 'L');
 	}
