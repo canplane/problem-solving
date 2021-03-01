@@ -1,3 +1,5 @@
+/* 문제 좀 잘 읽어라... a, e, i, o, u 어디에 빼 먹었노 */
+
 #include <cstdio>
 #include <algorithm>
 
