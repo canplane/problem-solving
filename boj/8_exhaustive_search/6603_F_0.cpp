@@ -25,7 +25,7 @@ int main() {
             for (int i = 0; i < 6; i++)
                 printf("%d ", v[i]);
             printf("\n");
-        } while (next_permutation(v.begin(), v.end()));
+        } while (next_permutation(v.begin(), v.end()));  // next_permutation하면 중복이 있다.
         printf("\n");
     }
 }
