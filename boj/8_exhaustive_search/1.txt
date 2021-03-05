@@ -1,0 +1,45 @@
+#include <cstdio>
+#include <cstring>
+
+int A[4000], B[4000], C[4000], D[4000], N;
+
+const int SIZE = 10'000'000, KEY = SIZE / 3;
+int ht[SIZE], cnt[SIZE];
+void put(int val) {
+	int idx = val % SIZE;
+	while (true) {
+		idx = (idx + KEY) % SIZE;
+		if (ht[idx] == val || ht[idx] == SIZE) {
+		ht[idx] = val, cnt[idx]++;
+		return;
+        }
+    }
+}
+int get(int val) {
+	int idx = val % SIZE;
+	while (true) {
+		idx = (idx + KEY) % SIZE;
+		if (ht[idx] == SIZE)
+			return 0;
+		if (ht[idx] == val)
+			return cnt[idx];
+	}
+}
+
+int main() {
+	scanf("%d", &N);
+	for (int i = 0; i < N; i++)
+		scanf("%d %d %d %d", &A[i], &B[i], &C[i], &D[i]);
+    
+	for (int i = 0; i < SIZE; i++)
+		ht[i] = SIZE;//, cnt[i] = 0;
+    
+	long long ans = 0;
+	for (int i = 0; i < N; i++)
+		for (int j = 0; j < N; j++)
+			put(A[i] + B[j]);
+	for (int i = 0; i < N; i++)
+		for (int j = 0; j < N; j++)
+			ans += get(-(C[i] + D[j]));
+	printf("%lld", ans);
+}
