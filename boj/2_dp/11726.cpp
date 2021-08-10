@@ -10,9 +10,9 @@ int f(int n) {
         return memo[n];
     return memo[n] = (f(n - 1) + f(n - 2)) % 10007;
     /* 모듈러 연산 : 
-        (A + B) mod C = A mod C + B mod C
-        (A - B) mod C = A mod C - B mod C
-        AB mod C = (A mod C)(B mod C)
+        (A + B) mod C = (A mod C + B mod C) mod C
+        (A - B) mod C = (A mod C - B mod C) mod C
+        AB mod C = ((A mod C)(B mod C)) mod C
      */
 }
 
