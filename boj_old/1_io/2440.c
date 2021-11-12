@@ -1,0 +1,1 @@
+main(n,j){scanf("%d",&n);while(j=n--){while(j--)printf("*");printf("\n");}}
