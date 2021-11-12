@@ -1,22 +1,19 @@
 #include <iostream>
-#define MEMOSZ 1000000
+#include <algorithm>
 
 using namespace std;
 
-int memo[MEMOSZ + 1];
+long long memo[1000000 + 1];
+int N;
 
-int main()
-{
-    int N;
-
+int main() {
     cin >> N;
+    
     for (int i = 2; i <= N; i++) {
-        memo[i] = memo[i - 1];
-        if (!(i % 3))
-            memo[i] = min(memo[i], memo[i / 3]);
-        if (!(i % 2))
-            memo[i] = min(memo[i], memo[i / 2]);
-        memo[i]++;
+        memo[i] = memo[i - 1] + 1;
+        memo[i] = min(1 + memo[i / 2] + i % 2, memo[i]);
+        memo[i] = min(1 + memo[i / 3] + i % 3, memo[i]);
     }
+
     cout << memo[N];
 }

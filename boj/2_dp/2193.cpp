@@ -1,12 +1,17 @@
-#include <cstdio>
+#include <iostream>
+using namespace std;
 
-long long m[90][2] = { { 0, 1 } };  // big integer...
+long long dp[90][2] = {
+    { 0, 1 },
+};
 
-int main()
-{
-    int N, i;
-    scanf("%d", &N);
-    for (i = 1; i < N; i++)
-        m[i][0] = (m[i][1] = m[i - 1][0]) + m[i - 1][1];
-    printf("%lld", m[N - 1][0] + m[N - 1][1]);
+int main() {
+    for (int i = 1; i < 90; i++) {
+        dp[i][0] = dp[i - 1][0] + dp[i - 1][1];
+        dp[i][1] = dp[i - 1][0];
+    }
+    
+    int N;
+    cin >> N;
+    cout << dp[N - 1][0] + dp[N - 1][1];
 }

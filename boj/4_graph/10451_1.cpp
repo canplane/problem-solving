@@ -1,34 +1,28 @@
 #include <cstdio>
-#include <vector>
-#define MAX_VERTICES 1000
 
-std::vector<int> edges[MAX_VERTICES + 1];
-bool visited[MAX_VERTICES + 1];
-
-void dfs(int v) {
-    visited[v] = true;
-    for (auto it = edges[v].begin(); it != edges[v].end(); it++) {
-        if (!visited[*it])
-            dfs(*it);
-    }
-}
+int next[1001];
+bool visit[1001];
 
 int main() {
-    int T, N, u, v, ans;
-    scanf("%d", &T);
-    while (T--) {
-        scanf("%d", &N);
-        for (u = 1; u <= N; u++) {
-            scanf("%d", &v);
-            edges[u].push_back(v);
-        }
-        ans = 0;
-        for (u = 1; u <= N; u++) {
-            if (!visited[u])
-                ++ans, dfs(u);
-        }
-        printf("%d\n", ans);
-        for (u = 1; u <= N; u++)
-            edges[u].resize(0), visited[u] = false;
-    }
+	int T;
+	scanf("%d", &T);
+	while (T--) {
+		int N;
+		scanf("%d", &N);
+		for (int v = 1; v <= N; v++) {
+			scanf("%d", &next[v]);
+			visit[v] = false;
+		}
+
+		int ans = 0;
+		for (int v = 1; v <= N; v++) {
+			if (!visit[v]) {
+				++ans;
+				do {
+					visit[v] = true;
+				} while (!visit[v = next[v]]);
+			}
+		}
+		printf("%d\n", ans);
+	}
 }

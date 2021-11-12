@@ -1,21 +1,21 @@
 #include <iostream>
 #include <algorithm>
-#define MAX_N 300
-
 using namespace std;
 
-int a[MAX_N], dp[MAX_N];
+int A[300], dp[300], N;
 
-int main()
-{
-    int n, i;
-    cin >> n;
-    for (i = 0; i < n; i++) {
-        cin >> a[i];
+int main() {
+    cin >> N;
+    for (int i = 0; i < N; i++) {
+        cin >> A[i];
     }
-    dp[0] = a[0], dp[1] = a[1] + a[0], dp[2] = a[2] + max(a[1], dp[0]);
-    for (i = 3; i < n; i++) {
-        dp[i] = a[i] + max(a[i - 1] + dp[i - 3], dp[i - 2]);
+
+    dp[0] = A[0];
+    dp[1] = A[1] + dp[0];
+    dp[2] = A[2] + max(A[1], dp[0]);
+    for (int i = 3; i < N; i++) {
+        dp[i] = A[i] + max(dp[i - 3] + A[i - 1], dp[i - 2]);
     }
-    cout << dp[n - 1];
+
+    cout << dp[N - 1];
 }

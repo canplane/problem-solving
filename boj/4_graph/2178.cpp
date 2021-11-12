@@ -1,25 +1,37 @@
 #include <cstdio>
+#include <queue>
+using namespace std;
 
-int maze[102][102], dist[102][102], N, M;
-
-int dy[4] = {-1, 1, 0, 0}, dx[4] = {0, 0, -1, 1};
-
-void dfs(int y, int x, int d) {
-    if (!maze[y][x])
-        return;
-    if (dist[y][x] && dist[y][x] <= d)
-        return;
-    dist[y][x] = d;
-    for (int i = 0; i < 4; i++)
-        dfs(y + dy[i], x + dx[i], d + 1);
-}
+int N, M;
+int map[102][102];
+int dist[102][102];
 
 int main() {
-    int y, x;
     scanf("%d %d", &N, &M);
-    for (y = 1; y <= N; y++)
-        for (x = 1; x <= M; x++)
-            scanf("%1d", &maze[y][x]);
-    dfs(1, 1, 1);
+    for (int i = 1; i <= N; i++) {
+        for (int j = 1; j <= M; j++) {
+            scanf("%1d", &map[i][j]);
+        }
+    }
+
+    queue<pair<int, int>> q;
+
+    int dy[4] = { -1, 0, 0, 1 }, dx[4] = { 0, -1, 1, 0 };
+    int ny, nx;
+
+    q.push({ 1, 1 }), map[1][1] = 0;
+    dist[1][1] = 1;
+    while (!q.empty()) {
+        auto [y, x] = q.front();
+        q.pop();
+
+        for (int i = 0; i < 4; i++) {
+            ny = y + dy[i], nx = x + dx[i];
+            if (map[ny][nx]) {
+                q.push({ ny, nx }), map[ny][nx] = 0;
+                dist[ny][nx] = dist[y][x] + 1;
+            }
+        }
+    }
     printf("%d", dist[N][M]);
 }

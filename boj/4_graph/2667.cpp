@@ -1,32 +1,48 @@
 #include <cstdio>
 #include <vector>
 #include <algorithm>
-#define MAX_N 25
+using namespace std;
 
-int map[MAX_N + 2][MAX_N + 2];  // 반대쪽에도 패딩이 있어야 한다! MAX_N + 1이 아님!
+int N;
+int map[27][27];
 
-int dfs(int i, int j) {
-    if (!map[i][j])
-        return 0;
-    map[i][j] = 0;
-    return 1 + dfs(i - 1, j) + dfs(i + 1, j) + dfs(i, j - 1) + dfs(i, j + 1);
+int dy[] = { -1, 1, 0, 0 }, dx[] = { 0, 0, -1, 1 };
+
+int dfs(int y, int x) {
+    int cnt = 1;
+    map[y][x] = 0;
+
+    int ny, nx;
+    for (int i = 0; i < 4; i++) {
+        ny = y + dy[i], nx = x + dx[i];
+        if (map[ny][nx]) {
+            cnt += dfs(ny, nx);
+        }
+    }
+    return cnt;
 }
 
 int main() {
-    int N, i, j, tmp;
-    std::vector<int> v;
-
     scanf("%d", &N);
-    for (i = 1; i <= N; i++)
-        for (j = 1; j <= N; j++)
+    for (int i = 1; i <= N; i++) {
+        for (int j = 1; j <= N; j++) {
             scanf("%1d", &map[i][j]);
-    for (i = 1; i <= N; i++)
-        for (j = 1; j <= N; j++)
-            if ((tmp = dfs(i, j)))
-                v.push_back(tmp);
-    std::sort(v.begin(), v.end());
+        }
+    }
 
-    printf("%lu\n", v.size());
-    for (auto& d : v)
-        printf("%d\n", d);
+    vector<int> ans;
+    for (int i = 1; i <= N; i++) {
+        for (int j = 1; j <= N; j++) {
+            if (map[i][j]) {
+                ans.push_back(dfs(i, j));
+            }
+        }
+    }
+    sort(ans.begin(), ans.end());
+
+    printf("%lu\n", ans.size());
+    for (int e : ans) {
+        printf("%d\n", e);
+    }
+    
 }
