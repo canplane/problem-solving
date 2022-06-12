@@ -1,21 +1,23 @@
 #include <iostream>
 #include <algorithm>
+#define MAX_N 1000
+
 using namespace std;
 
-int A[1000], dp[1000], maxlen;
+int a[MAX_N], dp[MAX_N];
 
-int main() {
-    int N;
+int main()
+{
+    int N, ans = 0;
     cin >> N;
     for (int i = 0; i < N; i++) {
-        cin >> A[i];
+        cin >> a[i];
 
         dp[i] = 1;
-        for (int j = i - 1; j >= 0; j--) {
-            if (A[j] > A[i])
+        for (int j = i - 1; j >= 0; j--)
+            if (a[j] > a[i])
                 dp[i] = max(dp[i], dp[j] + 1);
-        }
-        maxlen = max(maxlen, dp[i]);        
+        ans = max(ans, dp[i]);
     }
-    cout << maxlen;
+    cout << ans;
 }

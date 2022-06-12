@@ -1,38 +1,47 @@
 #include <cstdio>
+#include <utility>
 
-int N;
-struct { char l, r; } node[26];
+std::pair<char, char> tree[26];
 
-void preorder(char c) {
-    if (c == '.') return;
-    printf("%c", c);
-    preorder(node[c - 'A'].l);
-    preorder(node[c - 'A'].r);
+void preorder(int parent) {
+    if (parent == '.')
+        return;
+    printf("%c", parent);
+    preorder(tree[parent - 'A'].first);
+    preorder(tree[parent - 'A'].second);
 }
-void inorder(char c) {
-    if (c == '.') return;
-    inorder(node[c - 'A'].l);
-    printf("%c", c);
-    inorder(node[c - 'A'].r);
+void inorder(int parent) {
+    if (parent == '.')
+        return;
+    inorder(tree[parent - 'A'].first);
+    printf("%c", parent);
+    inorder(tree[parent - 'A'].second);
 }
-void postorder(char c) {
-    if (c == '.') return;
-    postorder(node[c - 'A'].l);
-    postorder(node[c - 'A'].r);
-    printf("%c", c);
+void postorder(int parent) {
+    if (parent == '.')
+        return;
+    postorder(tree[parent - 'A'].first);
+    postorder(tree[parent - 'A'].second);
+    printf("%c", parent);
 }
 
 int main() {
+    int N;
+    char root;
+    char parent, l, r;
     scanf("%d", &N);
 
-    char parent, l, r;
-    for (int i = 0; i < N; i++) {
-        scanf(" %c %c %c", &parent, &l, &r);
-        node[parent - 'A'].l = l;
-        node[parent - 'A'].r = r;
+    root = '\0';    
+    while (N--) {
+        scanf(" %c %c %c", &parent, &l, &r);  // %c 앞에 공백 두면 공백 문자 무시!
+        //printf("'%c', '%c', '%c'\n", parent, l, r);
+        if (!root)
+            root = parent;
+        tree[parent - 'A'].first = l;
+        tree[parent - 'A'].second = r;
     }
     
-    preorder('A'), puts("");
-    inorder('A'), puts("");
-    postorder('A'), puts("");
+    preorder(root), puts("");
+    inorder(root), puts("");
+    postorder(root), puts("");
 }

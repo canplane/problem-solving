@@ -1,33 +1,37 @@
 #include <iostream>
+#include <algorithm>
+#define MAX_N 1000
+
 using namespace std;
 
-int A[1000], asc[1000], desc[1000], maxlen;
+int a[MAX_N], asc[MAX_N], desc[MAX_N];
 
-int main() {
-    int N;
+int main()
+{
+    int N, i, j, ans;
     cin >> N;
-    for (int i = 0; i < N; i++) {
-        cin >> A[i];
+    for (i = 0; i < N; i++) {
+        cin >> a[i];
     }
-
-    for (int i = 0; i < N; i++) {
-        for (int j = i - 1; j >= 0; j--) {
-            if (A[j] < A[i])
-                asc[i] = max(asc[i], asc[j]);
+    for (i = 0; i < N; i++) {
+        asc[i] = 1;
+        for (j = i - 1; j >= 0; j--) {
+            if (a[j] < a[i]) {
+                asc[i] = max(asc[i], asc[j] + 1);
+            }
         }
-        asc[i]++;
     }
-    for (int i = N - 1; i >= 0; i--) {
-        for (int j = i + 1; j < N; j++) {
-            if (A[i] > A[j])
-                desc[i] = max(desc[i], desc[j]);
+    for (i = N - 1; i >= 0; i--) {
+        desc[i] = 1;
+        for (j = i + 1; j < N; j++) {
+            if (a[i] > a[j]) {
+                desc[i] = max(desc[i], desc[j] + 1);
+            }
         }
-        desc[i]++;
     }
-
-    for (int i = 0; i < N; i++) {
-        maxlen = max(maxlen, asc[i] + desc[i] - 1);
+    ans = 0;
+    for (i = 0; i < N; i++) {
+        ans = max(ans, asc[i] + desc[i] - 1);
     }
-    cout << maxlen;
-
+    cout << ans;
 }

@@ -1,19 +1,24 @@
 #include <iostream>
+#include <algorithm>
+#define MAX_N 30
+
 using namespace std;
 
-long long dp[31];
+int dp[MAX_N + 1] = { 0, 3 };
 
-int main() {
-    dp[2] = 3;
-    for (int i = 4; i <= 30; i += 2) {
-        dp[i] = 3 * dp[i - 2];
-        for (int j = i - 4; j > 0; j -= 2) {
-            dp[i] += 2 * dp[j];
-        }
-        dp[i] += 2;
-    }
+int f(int n)
+{
+    int ret;
+    if (dp[n - 1]) return dp[n - 1];
+    ret = 3 * f(n - 2) + 2;
+    for (int i = n - 4; i >= 2; i -= 2) ret += 2 * f(i);
+    return dp[n - 1] = ret;
+}
 
-    int N;
+int main()
+{
+    int N, ans = 0;
     cin >> N;
-    cout << dp[N];
+    if (!(N % 2)) ans = f(N);
+    cout << ans;
 }

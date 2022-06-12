@@ -1,21 +1,18 @@
 #include <iostream>
 #include <algorithm>
+
 using namespace std;
 
-int P[1001], N;
-int dp[1001];
+int m[1001];
 
-int main() {
+int main()
+{
+    int N, i, j;
     cin >> N;
-    for (int i = 1; i <= N; i++) {
-        cin >> P[i];
+    for (i = 1; i <= N; i++) {
+        cin >> m[i];
+        for (j = i - 1; j >= 1; j--)
+            m[i] = max(m[i], m[j] + m[i - j]);
     }
-
-    for (int i = 1; i <= N; i++) {
-        dp[i] = P[i];
-        for (int j = i - 1; j > 0; j--) {
-            dp[i] = max(dp[i], P[j] + dp[i - j]);
-        }
-    }
-    cout << dp[N];
+    cout << m[N];
 }
