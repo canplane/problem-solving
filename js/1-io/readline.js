@@ -1,17 +1,15 @@
-const rl = require("readline").createInterface({ input: process.stdin, output: process.stdout, });
+// boj.kr/1000
 
-const _input = [];
-let _input_cursor = 0;
-const input = () => _input[_input_cursor++];
+(() => {
+    const _input = [];
+    const input = () => _input.shift();
 
-rl.on("line", line => {
-    _input.push(line);
-}).on("close", () => {
-    main();
-    process.exit();
-});
+    const rl = require("readline").createInterface({ input: process.stdin, output: process.stdout });
+    rl.on("line", line => _input.push(line));
+    rl.on("close", () => { solution(input); process.exit(); });
+})();
 
-const main = () => {
-    let [A, B] = input().split(" ").map(e => parseInt(e));
+const solution = input => {
+    let [A, B] = input().split(" ").map(e => +e);
     console.log(A + B);
-};
+}

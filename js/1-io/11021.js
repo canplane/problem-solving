@@ -5,5 +5,5 @@ const input = () => _input[_input_idx++];
 let T = parseInt(input());
 for (let i = 0; i < T; i++) {
     let [A, B] = input().split(" ").map(e => parseInt(e));
-    console.log(A + B);
+    console.log(`Case #${i + 1}: ${A + B}`);
 }

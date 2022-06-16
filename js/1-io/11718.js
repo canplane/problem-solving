@@ -4,6 +4,5 @@ const input = () => _input[_input_idx++];
 
 let line;
 while ((line = input()) !== undefined) {
-    let [A, B] = line.split(" ").map(e => parseInt(e));
-    console.log(A + B);
+    console.log(line);
 }
