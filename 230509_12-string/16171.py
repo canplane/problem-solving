@@ -1,0 +1,1 @@
+print(int("".join([ "" if c.isdigit() else c for c in input() ]).find(input()) != -1))

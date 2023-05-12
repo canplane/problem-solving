@@ -1,0 +1,6 @@
+s = list(input())
+for _ in range(s.count("1") // 2):	s.remove("1")
+s.reverse()
+for _ in range(s.count("0") // 2):	s.remove("0")
+s.reverse()
+print(*s, sep="")
