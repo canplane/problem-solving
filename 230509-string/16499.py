@@ -1,1 +1,0 @@
-print(len({ tuple(sorted(list(input()))) for _ in range(int(input())) }))
