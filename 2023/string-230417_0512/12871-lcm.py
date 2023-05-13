@@ -3,7 +3,7 @@ def gcd(a, b):
         return b
     return gcd(b, a % b)
 
-def lcd(a, b):
+def lcm(a, b):
     GCD = gcd(a, b)
     return int(a * b / GCD)
 
@@ -11,7 +11,7 @@ def lcd(a, b):
 s = input()
 t = input()
 
-LCD = lcd(len(s), len(t))
-s *= int(LCD / len(s))
-t *= int(LCD / len(t))
+LCM = lcm(len(s), len(t))
+s *= int(LCM / len(s))
+t *= int(LCM / len(t))
 print(1 if s == t else 0)
