@@ -1,3 +1,8 @@
+/* compile option
+g++ --std=c++17 foo.c
+*/
+
+
 #include <iostream>
 using namespace std;
 
