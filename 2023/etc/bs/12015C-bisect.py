@@ -12,8 +12,7 @@ LIS = []
 for i in range(N):
 	lower_bound = bisect_left(LIS, A[i])
 	if lower_bound == len(LIS):
-		LIS.append(A[i])
-	else:
-		LIS[lower_bound] = A[i]
+		LIS.append(0)
+	LIS[lower_bound] = A[i]
 
 print(len(LIS))

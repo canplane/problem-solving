@@ -29,8 +29,7 @@ def bound(l, r, key):
 for i in range(N):
 	bound(0, len(LIS), A[i])
 	if lower_bound == len(LIS):
-		LIS.append(A[i])
-	else:
-		LIS[lower_bound] = A[i]
+		LIS.append(0)
+	LIS[lower_bound] = A[i]
 
 print(len(LIS))
