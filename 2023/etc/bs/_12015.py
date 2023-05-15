@@ -1,4 +1,4 @@
-# naive O(N^2) -> O(NlgN)
+# O(NlgN) (naive: O(N^2))
 
 import sys
 input = lambda: sys.stdin.readline().rstrip()
@@ -6,7 +6,8 @@ input = lambda: sys.stdin.readline().rstrip()
 N = int(input())
 A = list(map(int, input().split()))
 
-bs = []
+# bisect.bisect_left()가 더 빠름
+LIS = []
 lower_bound = None
 def bound(l, r, key):
 	global lower_bound
@@ -16,20 +17,20 @@ def bound(l, r, key):
 			return -1
 		
 		m = (l + r) // 2
-		if key == bs[m]:
+		if key == LIS[m]:
 			lower_bound = m
 			return m
 		else:
-			if key < bs[m]:
+			if key < LIS[m]:
 				r = m
 			else:
 				l = m + 1
 
 for i in range(N):
-	bound(0, len(bs), A[i])
-	if lower_bound == len(bs):
-		bs.append(A[i])
+	bound(0, len(LIS), A[i])
+	if lower_bound == len(LIS):
+		LIS.append(A[i])
 	else:
-		bs[lower_bound] = A[i]
+		LIS[lower_bound] = A[i]
 
-print(len(bs))
+print(len(LIS))
