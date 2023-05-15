@@ -9,5 +9,3 @@ for i in range(1, N + 1):
 	while (tmp := i - j ** 2) >= 0:
 		dp[i] = min(dp[i], 1 + dp[tmp]); j += 1
 print(dp[N])
-
-d+=[1+min(d[i-j*j]for j in range(1,int(i**.5)+1))]
