@@ -13,11 +13,9 @@ dp = [ 0 ] * N
 for i in range(N):
 	l = bisect_left(LIS, A[i])
 	if l == len(LIS):
-		LIS.append(A[i])
-		dp[i] = l
-	elif A[i] != LIS[l]:
-		LIS[l] = A[i]
-		dp[i] = l
+		LIS.append(0)
+	LIS[l] = A[i]
+	dp[i] = l
 
 ans = len(LIS)
 for i in range(N):

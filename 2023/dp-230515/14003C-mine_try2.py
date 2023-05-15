@@ -13,11 +13,9 @@ prev = [ -1 ] * N
 for i in range(N):
 	l = bisect_left(LIS, (A[i], 0))
 	if l == len(LIS):
-		LIS.append((A[i], i))
-		prev[i] = LIS[l - 1][1] if l > 0 else -1
-	elif A[i] != LIS[l][0]:
-		LIS[l] = (A[i], i)
-		prev[i] = LIS[l - 1][1] if l > 0 else -1
+		LIS.append(None)
+	LIS[l] = (A[i], i)
+	prev[i] = LIS[l - 1][1] if l > 0 else -1
 
 ans = len(LIS)
 seq = []
