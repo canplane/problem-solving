@@ -3,9 +3,11 @@
 
 N = int(input())
 
-dp = [0] * (N + 1)
-for i in range(1, N + 1):
-	dp[i] = i; j = 1
-	while (tmp := i - j ** 2) >= 0:
-		dp[i] = min(dp[i], 1 + dp[tmp]); j += 1
+dp = [0] * (1 + N)
+for i in range(1, 1 + N):
+	dp[i] = i
+	x = 1
+	while x * x <= i:
+		dp[i] = min(dp[i], dp[i - x * x] + 1)
+		x += 1
 print(dp[N])

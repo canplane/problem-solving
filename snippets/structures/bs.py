@@ -1,34 +1,47 @@
 '''
-left == lower_bound
-right + 1 == upper_bound
-(x in [lower_bound, upper_bound))
+x in [lower_bound, upper_bound)
+bisect_left == lower_bound
+bisect_right == upper_bound
 '''
-from bisect import bisect_left, bisect_right
-left = bisect_left(bs, 2); right = bisect_right(bs, 2)
-print(left, right)
-left = bisect_left(bs, 2.5); right = bisect_right(bs, 2.5)
-print(left, right)
-
 
 # naive: bisect가 더 빠름
-bs = [1, 2, 3, 4, 5]
-lower_bound = None
-def bound(l, r, key):
-	global lower_bound
-	while True:
-		if l == r:
-			lower_bound = l
-			return -1
-		
+# [l, r)
+def find(arr, l, r, k):
+	while l < r:
 		m = (l + r) // 2
-		if key == bs[m]:
-			lower_bound = m
-			return m
+		if k == arr[m]:
+			return k
+		elif k < arr[m]:
+			r = m
 		else:
-			if key < bs[m]:
-				r = m
-			else:
-				l = m + 1
+			l = m + 1
+	return -1
+def lower_bound(arr, l, r, k):
+	while l < r:
+		m = (l + r) // 2
+		if k <= arr[m]:
+			r = m
+		else:
+			l = m + 1
+	return l
+def upper_bound(arr, l, r, k):
+	while l < r:
+		m = (l + r) // 2
+		if k < arr[m]:
+			r = m
+		else:
+			l = m + 1
+	return l
 
-print(bound(0, len(bs), 2), lower_bound)
-print(bound(0, len(bs), 2.5), lower_bound)
+
+# example
+
+bs = [1, 2, 2, 2, 4, 4, 4, 5, 6]
+
+print(lower_bound(bs, 0, len(bs), 2), upper_bound(bs, 0, len(bs), 2))
+print(lower_bound(bs, 0, len(bs), 3), upper_bound(bs, 0, len(bs), 3))
+
+from bisect import bisect_left, bisect_right
+print(bisect_left(bs, 2), bisect_right(bs, 2))
+print(bisect_left(bs, 3), bisect_right(bs, 3))
+# default: lo=0, hi=len(bs)

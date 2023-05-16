@@ -1,6 +1,4 @@
-root = None
-def search(k):
-	global root
+def find_and_insert(root, k):
 	parent = None; node = root
 	while node:
 		if node[0] == k:
