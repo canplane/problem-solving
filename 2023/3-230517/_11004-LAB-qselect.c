@@ -12,6 +12,7 @@ nth element, sort 아래와 같이 구현 안 하면 시간 초과된다. 이렇
 T A[5000000];
 int N, K;
 
+/* 조건문 N번 */
 void nth_element(T *l, T *nth, T *r) {
 	T t;
 	if (l == r)		return;
