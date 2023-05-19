@@ -8,10 +8,10 @@ randomized quicksort
 #define		SWAP(x, y, t)	((t) = (x), (x) = (y), (y) = (t))
 
 #define		T				int
+/* LR ptrs */
 void sort(T *l, T *r) {
 	T t;
 	if (l == r)		return;
-
 	T pi = *(l + rand() % (r - l));
 	T *i = l - 1, *j = r;
 	while (1) {
@@ -43,13 +43,15 @@ void nth_element(T *l, T *nth, T *r) {
 
 
 /** ver 2 : 조건문 2N번 (ver 1은 N번) */
-/*void sort(T *l, T *r) {
+/* LL ptrs */
+/*
+void sort(T *l, T *r) {
 	T t;
 	if (l == r)		return;
 
 	T *pi = l + rand() % (r - l);
 	SWAP(*pi, *l, t);
-
+ 
 	T *i = l, *j;
 	for (j = l + 1; j < r; j++) {
 		if (*j <= *l)	++i, SWAP(*j, *i, t);
