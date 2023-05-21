@@ -1,5 +1,6 @@
-/* compile option
-g++ --std=c++17 foo.c
+/*
+	* 틀린 요인
+		* long long: stol()
 */
 
 using namespace std;
@@ -10,7 +11,10 @@ int main()
 {
 	ios_base::sync_with_stdio(false);
 	cin.tie(NULL); cout.tie(NULL);
-	////
-	
+	//
 
+	string A, B, C, D;
+	cin >> A >> B >> C >> D;
+	A += B, C += D;
+	cout << stol(A) + stol(C);
 }
