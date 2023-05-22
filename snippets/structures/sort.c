@@ -1,4 +1,12 @@
 /*
+	#define		T		char *
+	T A[1001];
+	int _cmp(const void *a, const void *b) { return strcmp(*(T *)a, *(T *)b); }
+	qsort(A, n, sizeof(*A), _cmp);
+*/
+
+
+/*
 randomized quicksort
 이 코드가 제일 빠름. 수정하지 말 것!
 */
