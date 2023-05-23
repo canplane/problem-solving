@@ -1,5 +1,5 @@
 /* compile option
-g++ --std=c++17 foo.c
+g++ --std=c++17 foo.cpp
 */
 
 using namespace std;
