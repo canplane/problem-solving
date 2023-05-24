@@ -1,0 +1,1 @@
+print(f"{int(input(), base=2):o}")
