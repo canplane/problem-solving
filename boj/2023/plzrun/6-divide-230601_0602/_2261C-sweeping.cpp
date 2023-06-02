@@ -34,7 +34,9 @@ long sweep()
 
 		pair<int, int> xy_lower = { -10000, v_x[i].second - sqrt(min_d) };
 		pair<int, int> xy_upper = { 10000, v_x[i].second + sqrt(min_d) };
-		// lower_bound(v_xy, ...) 하면 안 되는 것 같다. 왜 그런진 모르겠는데...
+		// std::lower_bound(v_xy, ...) 하면 안 된다.
+		// [C++ Difference between std::lower_bound and std::set::lower_bound?]
+		// 		https://stackoverflow.com/questions/31821951/c-difference-between-stdlower-bound-and-stdsetlower-bound
 		auto it_xy = v_xy.lower_bound(xy_lower);
 		auto it_xy_r = v_xy.upper_bound(xy_upper);
 		while (it_xy != it_xy_r)
