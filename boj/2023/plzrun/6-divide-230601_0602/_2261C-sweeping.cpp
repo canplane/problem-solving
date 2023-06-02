@@ -30,11 +30,11 @@ long sweep()
 	v_xy.insert(v_x[0]), v_xy.insert(v_x[1]);
 	for (int i = 2; i < v_x.size(); i++) {
 		while (v_x[i].first - it_x->first > sqrt(min_d))
-			v_xy.erase(*it_x++);
-
+			v_xy.erase(*it_x++);	// set의 erase는 iterator 말고 key도 조회 가능
+		
 		pair<int, int> xy_lower = { -10000, v_x[i].second - sqrt(min_d) };
 		pair<int, int> xy_upper = { 10000, v_x[i].second + sqrt(min_d) };
-		// std::lower_bound(set, ...) 하면 안 된다.
+		// std::lower_bound(set, ...) 하면 안 된다. (느림!)
 		// [C++ Difference between std::lower_bound and std::set::lower_bound?]
 		// 		https://stackoverflow.com/questions/31821951/c-difference-between-stdlower-bound-and-stdsetlower-bound
 		auto it_xy = v_xy.lower_bound(xy_lower);
