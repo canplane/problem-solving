@@ -1,5 +1,5 @@
 '''
-* 반례 :
+* 반례 : https://www.acmicpc.net/board/view/22586
 330
 4
 0 1 2 3 
