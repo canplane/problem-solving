@@ -76,14 +76,14 @@ int sweep()
 	auto it = v.begin();
 
 	set<pair<pair<long, long>, pair<long, long>>, _comp_y_hi> v_y_hi;
-	//set<pair<pair<long, long>, pair<long, long>>, _comp_y_lo> v_y_lo;
+	set<pair<pair<long, long>, pair<long, long>>, _comp_y_lo> v_y_lo;
 
-	v_y_hi.insert(v[0]);//, v_y_lo.insert(v[0]);
+	v_y_hi.insert(v[0]), v_y_lo.insert(v[0]);
 	
 	for (int i = 1; i < v.size(); i++) {
 		while (it->second < v[i].first) {
 			auto p_y = f_y(*it++);
-			v_y_hi.erase(p_y);//, v_y_lo.erase(p_y);
+			v_y_hi.erase(p_y), v_y_lo.erase(p_y);
 		}
 
 		auto [A, B] = v[i];
@@ -92,14 +92,13 @@ int sweep()
 		auto [y_m, y_M] = p_y;
 
 		auto it_y = v_y_hi.lower_bound({ y_m, y_m });
-		//auto it_y_r = v_y_hi.upper_bound(*v_y_lo.upper_bound({ y_M, y_M }));
-		auto it_y_r = v_y_hi.end();
+		auto it_y_r = v_y_hi.upper_bound(*v_y_lo.upper_bound({ y_M, y_M }));
 		while (it_y != it_y_r) {
 			auto [C, D] = f(*it_y++);
 			ans |= solve(A, B, C, D);
 			if (ans)	return ans;
 		}
-		v_y_hi.insert(p_y);//, v_y_lo.insert(p_y);
+		v_y_hi.insert(p_y), v_y_lo.insert(p_y);
 	}
 
 	return ans;
