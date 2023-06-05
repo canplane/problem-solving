@@ -5,7 +5,7 @@ using namespace std;
 #include <vector>
 #include <set>
 
-// Shmos-Hoey Algorithm
+// Shamos-Hoey Algorithm
 long t;
 struct Line {
 	pair<long, long> P, Q;
