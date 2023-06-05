@@ -9,6 +9,16 @@ int ccw(pair<long, long> a, pair<long, long> b, pair<long, long> c)
 	if (ret < 0)	return -1;
 	return 0;
 }
+bool intersect(pair<long, long> A, pair<long, long> B, pair<long, long> C, pair<long, long> D)
+{
+	int ans1 = ccw(A, B, C) * ccw(A, B, D);
+	int ans2 = ccw(C, D, A) * ccw(C, D, B);
+	
+	if (ans1 == 0 && ans2 == 0)
+		return A <= D && C <= B;
+	else
+		return ans1 <= 0 && ans2 <= 0;
+}
 
 int main()
 {
@@ -20,16 +30,5 @@ int main()
 
 	if (A > B)  swap(A, B);
 	if (C > D)  swap(C, D);
-
-	int ans1 = ccw(A, B, C) * ccw(A, B, D);
-	int ans2 = ccw(C, D, A) * ccw(C, D, B);
-
-	int ans;
-	if (ans1 == 0 && ans2 == 0)
-		ans = (A <= D && C <= B);
-	else if (ans1 <= 0 && ans2 <= 0)
-		ans = 1;
-	else
-		ans = 0;
-	printf("%d", ans);
+	printf("%d", intersect(A, B, C, D));
 }
