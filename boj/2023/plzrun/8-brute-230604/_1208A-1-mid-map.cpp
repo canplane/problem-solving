@@ -1,8 +1,10 @@
 /*
 	Meet on the Middle (map)
 
-	vector -> lower/upper (13528 KB, 216 ms)보다
-	map (42888 KB, 728 ms)이 훨씬 느림
+	vector -> two pointers (13528 KB, 160 ms)
+	vector -> binary search (13528 KB, 216 ms)
+	map (binary search) (42888 KB, 728 ms)
+	=> 정렬 + 투 포인터로 하는 것이 좋다.
 */
 
 using namespace std;
