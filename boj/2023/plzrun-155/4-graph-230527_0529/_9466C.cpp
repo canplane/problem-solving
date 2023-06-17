@@ -12,7 +12,7 @@ int f(int u)
 	while (!root[v]) {
 		root[v] = u, dep[v] = d;
 		int w = adj[v];
-		if (root[w] == u && dep[w] <= dep[v])
+		if (root[w] == u)
 			return dep[v] - dep[w] + 1;
 		v = w, d += 1;
 	}

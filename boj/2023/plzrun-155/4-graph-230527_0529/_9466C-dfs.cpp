@@ -15,7 +15,7 @@ void dfs(int v, int d)
 	int w = adj[v];
 	if (!dep[w])
 		dfs(w, d + 1);
-	else if (dep[w] != -1 && dep[w] <= dep[v])
+	else if (dep[w] != -1)
 		cycle_nodes += (dep[v] - dep[w] + 1);
 
 	dep[v] = -1;
