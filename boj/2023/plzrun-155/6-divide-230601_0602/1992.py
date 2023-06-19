@@ -12,7 +12,7 @@ def equal(ay, ax, d):
 				return None
 	return a
 
-def divcon(ay, ax, d):
+def dc(ay, ax, d):
 	if (k := equal(ay, ax, d)) != None:
 		return str(k)
 	else:
@@ -20,8 +20,8 @@ def divcon(ay, ax, d):
 		nd = d // 2
 		for y in range(ay, ay + d, nd):
 			for x in range(ax, ax + d, nd):
-				ret += divcon(y, x, nd)
+				ret += dc(y, x, nd)
 		ret += ")"
 		return ret
 
-print(divcon(0, 0, N))
+print(dc(0, 0, N))

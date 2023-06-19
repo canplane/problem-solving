@@ -15,10 +15,10 @@ int p[N2];
 	for (i = 0; i < N; i++)	printf("%s ", A[p[i]]);
 	puts("");
 }*/
-int permut(int pos, int b)
+int permut(int r_i, int b)
 {
 	int i, j, c;
-	if (pos == N2) {
+	if (r_i == N2) {
 		for (i = 0; i < N; i++)
 			strcpy(B[i], A[p[i]]);
 		for (i = 0; i < N; i++)
@@ -32,10 +32,10 @@ int permut(int pos, int b)
 		return 1;
 	}
 
-	for (i = pos; i < N2; i++) {
-		SWAP(p[pos], p[i]);
-		b |= permut(pos + 1, b);
-		SWAP(p[pos], p[i]);
+	for (i = r_i; i < N2; i++) {
+		SWAP(p[r_i], p[i]);
+		b |= permut(r_i + 1, b);
+		SWAP(p[r_i], p[i]);
 	}
 	return b;
 }

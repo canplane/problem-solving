@@ -4,18 +4,18 @@ using namespace std;
 
 int A[8], N;
 
-int permut(int idx)
+int permut(int r_i)
 {
 	int ret = 0;
-	if (idx == N) {
+	if (r_i == N) {
 		for (int i = 1; i < N; i++)
 			ret += abs(A[i - 1] - A[i]);
 		return ret;
 	}
-	for (int i = idx; i < N; i++) {
-		swap(A[idx], A[i]);
-		ret = max(ret, permut(idx + 1));
-		swap(A[idx], A[i]);
+	for (int i = r_i; i < N; i++) {
+		swap(A[r_i], A[i]);
+		ret = max(ret, permut(r_i + 1));
+		swap(A[r_i], A[i]);
 	}
 	return ret;
 }

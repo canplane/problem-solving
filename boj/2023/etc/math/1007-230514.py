@@ -12,12 +12,12 @@ for _ in range(T):
 		x[i], y[i] = map(int, input().split())
 
 	
-	combis = list(combinations(range(N), N // 2))
+	combs = list(combinations(range(N), N // 2))
 	X, Y = sum(x), sum(y)
 
 	ans = 1e20
-	for combi in combis:
-		X1, Y1 = sum([ x[i] for i in combi ]), sum([ y[i] for i in combi ])
+	for comb in combs:
+		X1, Y1 = sum([ x[i] for i in comb ]), sum([ y[i] for i in comb ])
 		X2, Y2 = X - X1, Y - Y1
 		ans = min(ans, (X1 - X2) ** 2 + (Y1 - Y2) ** 2)
 	print(ans ** (1 / 2))

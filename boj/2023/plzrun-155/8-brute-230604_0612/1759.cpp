@@ -16,17 +16,16 @@ bool is_valid(char s[])
 	return v >= 1 && c >= 2;
 }
 
-char _combi[16];
-void combi(int n, int n_i, int c, int c_i)
+char comb[16];
+void combi(int n, int n_i, int r, int r_i)
 {
-	if (c_i == c) {
-		if (is_valid(_combi))
-			printf("%s\n", _combi);
+	if (r_i == r) {
+		if (is_valid(comb))
+			printf("%s\n", comb);
 		return;
 	}
 	for (int i = n_i; i < n; i++) {
-		_combi[c_i] = A[i];
-		combi(n, i + 1, c, c_i + 1);
+		comb[r_i] = A[i], combi(n, i + 1, r, r_i + 1);
 	}
 }
 

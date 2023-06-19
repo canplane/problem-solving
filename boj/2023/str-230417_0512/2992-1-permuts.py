@@ -3,11 +3,11 @@ from itertools import permutations
 X = input()     # '21'
 x = int(X)
 
-permute = permutations(list(X))
-permute = [ int("".join(x)) for x in list(permute) ]     # [21, 12]
+perms = permutations(list(X))
+perms = [ int("".join(x)) for x in list(perms) ]     # [21, 12]
 
 res = -1
-for e in permute:
+for e in perms:
     if e <= x:
         continue
     if res == -1 or e < res:

@@ -5,7 +5,7 @@ print = lambda *x: sys.stdout.write(f"{' '.join(map(str, x))}\n")
 N = int(input())
 A = [ [" "] * N for _ in range(N) ]
 
-def divcon(ay, ax, d):
+def dc(ay, ax, d):
 	if d == 1:
 		A[ay][ax] = "*"
 	else:
@@ -14,6 +14,6 @@ def divcon(ay, ax, d):
 			for x in range(ax, ax + d, nd):
 				if y == ay + nd and x == ax + nd:
 					continue
-				divcon(y, x, nd)
-divcon(0, 0, N)
+				dc(y, x, nd)
+dc(0, 0, N)
 print("\n".join([ "".join(map(str, A[y])) for y in range(N) ]))

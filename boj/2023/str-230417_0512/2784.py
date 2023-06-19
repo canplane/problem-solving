@@ -1,10 +1,10 @@
 A = [ tuple(input()) for _ in range(6) ]
 
 from itertools import permutations
-permut = list(permutations(A))
+perms = list(permutations(A))
 
 res = 0
-for p in permut:
+for p in perms:
 	M = [ p[0], p[1], p[2] ]
 	M_T = list(zip(*M))
 	if [ p[3], p[4], p[5] ] == M_T:
