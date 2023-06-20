@@ -12,26 +12,27 @@ int N;
 int parent[1001];
 void dj_init(int n)
 {
-	for (int i = 1; i <= n; i++)
-		parent[i] = i;
+	for (int v = 0; v <= n; v++) {
+		parent[v] = v;
+	}
 }
-int dj_find(int x)
+int dj_find(int v)
 {
-	int r = x;
-	while (parent[r] != r)
+	int r = v;
+	while (parent[r] != r) {
 		r = parent[r];
-	
-	while (parent[x] != x) {
-		int t = x;
-		x = parent[x];
-		parent[t] = r;
+	}
+	int t;
+	while ((t = parent[v]) != v) {
+		parent[v] = r;
+		v = t;
 	}
 	return r;
 }
-void dj_union(int x, int y)
+void dj_union(int u, int v)
 {
-	int rx = dj_find(x), ry = dj_find(y);
-	parent[ry] = x;
+	int ru = dj_find(u), rv = dj_find(v);
+	parent[rv] = ru;
 }
 int dj_size(int n)
 {
