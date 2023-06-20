@@ -50,7 +50,7 @@ int main()
 		_comb[i] = i;
 	}
 
-	for (int u = 0; u < N; u++) {
+	for (int u = 1; u < N; u++) {
 		dp[u][0] = W[u][0];
 	}
 	for (int r = 2; r <= N - 1; r++) {
