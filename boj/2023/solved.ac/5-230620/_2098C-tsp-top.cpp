@@ -5,7 +5,7 @@ using namespace std;
 int N;
 int W[16][16];
 
-#define INF (1 << 30)
+#define INF (1 << 31 - 1)
 int dp[16][1 << 16];
 
 // dp[current node][visited nodes up to now]: distance to node 0 by passing through left nodes

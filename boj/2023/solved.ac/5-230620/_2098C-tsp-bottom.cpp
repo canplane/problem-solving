@@ -7,7 +7,7 @@ int W[16][16];
 
 int dp[16][65536];
 
-#define INF 0x7fffffff
+#define INF (1 << 31 - 1)
 int _comb[16], comb[16];
 void combi(int r, int n_i, int r_i)
 {
