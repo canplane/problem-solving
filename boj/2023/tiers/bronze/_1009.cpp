@@ -1,53 +1,28 @@
-using namespace std;
 #include <cstdio>
-
-/*
-{ 0 },
-{ 1 },
-{ 2, 4, 8, 6 },
-{ 3, 9, 7, 1 },
-{ 4, 6 },
-{ 5 },
-{ 6 },
-{ 7, 9, 3, 1 },
-{ 8, 4, 2, 6 },
-{ 9, 1 },
-*/
 
 int f(int a, int b)
 {
 	a %= 10;
-
-	int x, q, i;
-
-	x = a, q = 1;
-	while (true) {
-		x = (x * a) % 10;
-		if (x == a)
-			break;
-		q++;
+	int x = a, c = 1;
+	while ((x = (x * a) % 10) != a) {
+		c++;
 	}
-
-	b %= q;
-	if (b == 0)
-		b += q;
+	b = (b + (c - 1)) % c + 1;
 	
 	x = 1;
 	for (int i = 0; i < b; i++) {
 		x = (x * a) % 10;
 	}
-
-	if (x == 0)
-		return 10;
-	return x;
+	return (x + (10 - 1)) % 10 + 1;
 }
 
 int main()
 {
 	int T;
 	scanf("%d", &T);
+
+	int a, b;
 	while (T--) {
-		int a, b;
 		scanf("%d %d", &a, &b);
 		printf("%d\n", f(a, b));
 	}
