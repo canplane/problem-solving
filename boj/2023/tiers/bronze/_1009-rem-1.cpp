@@ -21,8 +21,8 @@ int main()
 	int T;
 	scanf("%d", &T);
 
-	int a, b;
 	while (T--) {
+		int a, b;
 		scanf("%d %d", &a, &b);
 		printf("%d\n", f(a, b));
 	}
