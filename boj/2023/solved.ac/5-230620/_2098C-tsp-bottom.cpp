@@ -1,40 +1,42 @@
+// 이게 더 구현이 복잡하고 성능도 느림
+
 using namespace std;
 #include <cstdio>
 #include <algorithm>
 
+#define INF 0x7fffffff
+
 int N;
 int W[16][16];
 
-int dp[16][65536];
-
-#define INF (1 << 31 - 1)
-int _comb[16], comb[16];
-void combi(int r, int n_i, int r_i)
+int dp[16][1 << 16];
+int f(int v, int visit)
+{
+	dp[v][visit] = INF;
+	for (int w = 1; w < N; w++) {
+		if (!(visit & (1 << w))) {
+			continue;
+		}
+		if (W[v][w] == INF) {
+			continue;
+		}
+		if (dp[w][visit & ~(1 << v)] == INF) {
+			continue;
+		}
+		dp[v][visit] = min(dp[v][visit], W[v][w] + dp[w][visit & ~(1 << v)]);
+	}
+	return dp[v][visit];
+}
+void combi(int n_i, int r_i, int visit, int r)
 {
 	if (r_i == r) {
-		int A = 0;
-		for (int i = 0; i < r; i++) {
-			A |= (1 << comb[i]);
+		for (int v = 1; v < N; v++) {
+			f(v, visit);
 		}
-		for (int i = 0; i < r; i++) {
-			int u = comb[i];
-			A &= ~(1 << u);
-			dp[u][A] = INF;
-			for (int j = 0; j < r; j++) {
-				if (i == j) {
-					continue;
-				}
-				int v = comb[j];
-				if (W[u][v] != INF && dp[v][A & ~(1 << v)] != INF) {
-					dp[u][A] = min(dp[u][A], W[u][v] + dp[v][A & ~(1 << v)]);
-				}
-			}
-			A |= (1 << u);
-		}
-		return;
+		return;	
 	}
 	for (int i = n_i; i < N; i++) {
-		comb[r_i] = _comb[i], combi(r, i + 1, r_i + 1);
+		combi(i + 1, r_i + 1, visit | (1 << i), r);
 	}
 }
 
@@ -49,26 +51,11 @@ int main()
 			}
 		}
 	}
-	for (int i = 0; i < N - 1; i++) {
-		_comb[i] = i + 1;
-	}
-
 	for (int v = 1; v < N; v++) {
-		dp[v][0] = W[v][0];
+		dp[v][1 << v] = W[v][0];
 	}
-	for (int r = 2; r <= N - 1; r++) {
-		combi(r, 0, 0);
+	for (int r = 2; r < N; r++) {
+		combi(1, 0, 0, r);
 	}
-
-	int A = 0;
-	for (int v = 1; v < N; v++) {
-		A |= (1 << v);
-	}
-	dp[0][A] = INF;
-	for (int v = 1; v < N; v++) {
-		if (W[0][v] != INF && dp[v][A & ~(1 << v)] != INF) {
-			dp[0][A] = min(dp[0][A], W[0][v] + dp[v][A & ~(1 << v)]);
-		}
-	}
-	printf("%d", dp[0][A]);
+	printf("%d", f(0, (1 << N) - 1));
 }
