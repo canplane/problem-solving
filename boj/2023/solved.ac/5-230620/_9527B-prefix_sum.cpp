@@ -14,6 +14,7 @@ long f(long x)
 {
 	if (x == 0)	return 0;
 	
+	// i = log2(x)
 	int i = 0;
 	while (!(x < _2(i + 1)))	i++;
 
