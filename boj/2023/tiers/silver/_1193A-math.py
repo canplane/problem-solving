@@ -2,14 +2,17 @@
 
 X = int(input())
 
-g = 1
-n = 0
-while not X <= n + g:
-	n += g
-	g += 1
+lo = 0
+n = 1
+while True:
+	if X <= lo + n:		# lo < X <= lo + n
+		break
+	lo += n
+	n += 1
 
-if g % 2 == 0:
-	a = X - n
-else:
-	a = (g + 1) - (X - n)
-print(f"{a}/{(g + 1) - a}")
+k = X - lo
+a, b = k, (n + 1) - k
+if n % 2 == 1:
+	a, b = b, a
+
+print(f"{a}/{b}")
