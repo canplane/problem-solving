@@ -1,3 +1,8 @@
+/* [parsing]
+오래 걸림: 파싱 방법이 익숙치 않아서
+틀린 이유: char xs[] 사이즈 작게 설정해서 segfault
+*/
+
 using namespace std;
 #include <cstdio>
 #include <cstdlib>
