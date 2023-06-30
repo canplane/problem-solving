@@ -1,3 +1,6 @@
+// 2nd trial: Failed
+// 그렇다고 백트래킹은 경우의 수가 너무 많음 -> 다시 dp
+
 using namespace std;
 #include <cstdio>
 #include <algorithm>

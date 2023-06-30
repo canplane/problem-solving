@@ -1,3 +1,6 @@
+// 1st trial: Failed
+// memory를 기준으로 하면 너무 공간이 많음 -> cost로 변경
+
 using namespace std;
 #include <cstdio>
 #include <algorithm>
