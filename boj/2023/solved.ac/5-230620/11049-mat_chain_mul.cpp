@@ -1,3 +1,5 @@
+// matrix chain multiplication (연쇄 행렬 곱셈)
+
 using namespace std;
 #include <cstdio>
 #include <algorithm>
