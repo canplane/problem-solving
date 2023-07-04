@@ -1,3 +1,5 @@
+// lca (최소 공통 조상)
+
 using namespace std;
 #include <cstdio>
 #include <vector>
