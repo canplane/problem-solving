@@ -2,17 +2,16 @@ using namespace std;
 #include <cstdio>
 #include <vector>
 #include <algorithm>
+#include <utility>
 
 int V;
-vector<int> adj[10001];
+vector<int> adj[100001];
 
-int dfn[10001], cnt;
-vector<int> artis;
+int dfn[100001], cnt;
+vector<pair<int, int>> artis;
 int dfs(int v, int u)
 {
 	int low = (dfn[v] = ++cnt), low_w;
-	int nc = 0;
-	bool is_arti = false;
 	for (int w : adj[v]) {
 		if (w == u) {
 			continue;
@@ -21,18 +20,16 @@ int dfs(int v, int u)
 			low = min(low, dfn[w]);
 		}
 		else {
-			nc++, low_w = dfs(w, v);
-			if (u != -1) {	// if not root
-				is_arti |= (dfn[v] <= low_w);
+			low_w = dfs(w, v);
+			if (dfn[v] < low_w) {
+				pair<int, int> p = { v, w };
+				if (p.first > p.second) {
+					swap(p.first, p.second);
+				}
+				artis.push_back(p);
 			}
 			low = min(low, low_w);
 		}
-	}
-	if (u == -1) {	// if root
-		is_arti = (nc > 1);
-	}
-	if (is_arti) {
-		artis.push_back(v);
 	}
 	return low;
 }
@@ -55,7 +52,7 @@ int main()
 
 	sort(artis.begin(), artis.end());
 	printf("%lu\n", artis.size());
-	for (int v : artis) {
-		printf("%d ", v);
+	for (auto [v, w] : artis) {
+		printf("%d %d\n", v, w);
 	}
 }
