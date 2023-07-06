@@ -3,13 +3,13 @@ using namespace std;
 #include <vector>
 #include <algorithm>
 
-#define MAX_N 100001
-#define MAX_LOG_N 16
+#define MAX_N 100000
+#define MAX_LOG_N 16	// floor(log_2 MAX_N)
 
 int N;
-vector<int> adj[MAX_N];
+vector<int> adj[MAX_N + 1];
 
-int dep[MAX_N], parent[MAX_N][MAX_LOG_N];
+int dep[MAX_N + 1], parent[MAX_N + 1][MAX_LOG_N];
 void dfs(int v, int u, int d)
 {
 	dep[v] = d;
