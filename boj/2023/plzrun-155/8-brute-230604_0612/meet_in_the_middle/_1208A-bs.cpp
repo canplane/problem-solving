@@ -1,5 +1,5 @@
 /*
-	Meet on the Middle (vector -> binary search)
+	Meet in the Middle (vector -> binary search)
 
 	vector -> two pointers (13528 KB, 160 ms)
 	vector -> binary search (13528 KB, 216 ms)
