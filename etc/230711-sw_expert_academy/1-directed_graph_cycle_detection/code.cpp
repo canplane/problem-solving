@@ -15,14 +15,14 @@ vector<pair<int, int>> adj[MAX_N + 1];	// adjacency list
 int dist[MAX_N + 1];
 int dfn[MAX_N + 1], max_dfn;
 bool finish[MAX_N + 1];
-int dfs(int v, int u)
+int dfs(int v)
 {
 	int ret = INF;
 	dfn[v] = ++max_dfn;
 	for (auto [w, cost] : adj[v]) {
 		if (!dfn[w]) {	// unvisit
 			dist[w] = dist[v] + cost;
-			ret = min(ret, dfs(w, v));
+			ret = min(ret, dfs(w));
 		}
 		else if (!finish[w]) {	// dfn이 있는데, finish는 아니다. -> back edge
 			// cycle detect
@@ -43,12 +43,12 @@ int sol()
 		adj[x].push_back({ y, cost });
 	}
 	int ans = INF;
-	for (int i = 1; i <= N; i++) {
-		if (!dfn[i]) {
-			ans = min(ans, dfs(i, 0));
+	for (int v = 1; v <= N; v++) {
+		if (!dfn[v]) {
+			ans = min(ans, dfs(v));
 		}
 	}
-	return ans;
+	return ans == INF ? -1 : ans;
 }
 
 int main()
