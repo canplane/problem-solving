@@ -1,4 +1,6 @@
-// weighted directed graph cycle detection
+// FAILED: only can be used to weighted directed graph cycle "DETECTION"
+// counterexample: G = { (1, 2, 1), (2, 3, 10), (2, 4, 1), (3, 1, 1), (4, 3, 1) }
+// dfs: O(V + E)
 
 using namespace std;
 #include <cstdio>
