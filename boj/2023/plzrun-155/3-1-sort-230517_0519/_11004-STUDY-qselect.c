@@ -1,5 +1,5 @@
 /*
-nth element, sort 아래와 같이 구현 안 하면 시간 초과된다. 이렇게 짜야 하는 듯
+nth_element, sort 아래와 같이 구현 안 하면 시간 초과된다. 이렇게 짜야 하는 듯
 (randomized 안 하거나, nth 대신 sort 써도 통과는 되는데, 원래 짜던 식으로 짜면 안 되더라)
 */
 

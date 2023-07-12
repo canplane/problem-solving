@@ -2,27 +2,29 @@ using namespace std;
 #include <cstdio>
 #include <algorithm>
 
-#define INF 0x7fffffff
+#define INF ((1L << 31) - 1)
 
-int N, S;
-int A[100000];
+int N;
+int A[100000 + 1], S;	// +1 !
 
 int main()
 {
 	scanf("%d %d", &N, &S);
-	for (int i = 0; i < N; i++)
+	for (int i = 0; i < N; i++) {
 		scanf("%d", &A[i]);
-
-	int i = 0, j = 0;
-	int sum = 0;
+	}
+	
 	int ans = INF;
+	int sum = 0;
+	int i = 0, j = 0;
 	while (j <= N) {
-		if (sum >= S)
+		if (sum >= S) {
 			ans = min(ans, j - i);
-		if (sum < S)
-			sum += A[j++];
-		else
 			sum -= A[i++];
+		}
+		else {
+			sum += A[j++];
+		}
 	}
 	printf("%d", ans == INF ? 0 : ans);
 }
