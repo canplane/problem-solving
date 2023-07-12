@@ -1,4 +1,4 @@
-// FAILED: O(V^2 lgN)
+// FAILED: O(V(ElgE)) = O(V^3logV)
 
 using namespace std;
 #include <cstdio>

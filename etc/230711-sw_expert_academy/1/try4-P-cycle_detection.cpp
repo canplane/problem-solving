@@ -19,6 +19,7 @@ void dfs(int v)
 {
 	for (auto [w, cost] : adj[v]) {
 		if (dist[v] + cost < dist[w]) {
+			// 비효율? -> 최적화 못할까?
 			dist[w] = dist[v] + cost, dfs(w);
 		}
 		else if (!finish[w]) {	// back edge -> cycle detect
