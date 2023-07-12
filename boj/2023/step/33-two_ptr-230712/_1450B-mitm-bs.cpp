@@ -1,3 +1,5 @@
+// 2n개 데이터에 대하여 naive는 O(2^(2n)), MITM + BS는 O(n * 2^n).
+
 using namespace std;
 #include <bits/stdc++.h>
 
