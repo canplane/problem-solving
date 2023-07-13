@@ -1,6 +1,4 @@
-// BOJ 1956
-
-// FAILED: O(V(ElgE)) = O(V^3logV)
+// O(V(V + E)logE)
 
 using namespace std;
 #include <cstdio>
@@ -72,9 +70,5 @@ long sol()
 
 int main()
 {
-	int T;
-	scanf("%d", &T);
-	for (int tc = 1; tc <= T; tc++) {
-		printf("#%d %ld\n", tc, sol());
-	}
+	printf("%d", sol());
 }

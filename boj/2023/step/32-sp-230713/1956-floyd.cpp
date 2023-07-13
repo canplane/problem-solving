@@ -1,6 +1,4 @@
-// BOJ 1956
-
-// FAILED: O(V^3)
+// O(V^3)
 
 using namespace std;
 #include <cstdio>
@@ -56,9 +54,5 @@ int sol()
 
 int main()
 {
-	int T;
-	scanf("%d", &T);
-	for (int tc = 1; tc <= T; tc++) {
-		printf("#%d %d\n", tc, sol());
-	}
+	printf("%d", sol());
 }

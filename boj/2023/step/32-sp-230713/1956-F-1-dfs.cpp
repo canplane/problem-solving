@@ -1,5 +1,3 @@
-// BOJ 1956
-
 // 1st trial에서 dfn을 dist 비교로 수정해서 재방문하게 만들었더니 통과되었다.
 // 이건 무슨 알고리즘이지?? 비효율적인거 같은데
 
@@ -59,9 +57,5 @@ int sol()
 
 int main()
 {
-	int T;
-	scanf("%d", &T);
-	for (int tc = 1; tc <= T; tc++) {
-		printf("#%d %d\n", tc, sol());
-	}
+	printf("%d", sol());
 }
