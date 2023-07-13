@@ -44,7 +44,7 @@ int main()
 	while (m--) {
 		int a, b, c;
 		scanf("%d %d %d", &a, &b, &c);
-		A[a][b] = min(A[a][b], c);
+		A[a][b] = min(A[a][b], c);	// 중복 가능!
 	}
 
 	// floyd
