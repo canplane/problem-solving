@@ -1,4 +1,4 @@
-// O(V(V + E)logE)
+// V * O((E + V)logE) = O(V^3 logV)
 
 using namespace std;
 #include <cstdio>
