@@ -6,21 +6,21 @@ using namespace std;
 
 #define INF 0x7fffffff
 
-int uf[7];
-void uf_init(int n)
+int dj[7];
+void dj_init(int n)
 {
-	do uf[n] = n;
+	do dj[n] = n;
 	while (--n);
 }
-int uf_find(int u)
+int dj_find(int u)
 {
-	while (uf[u] != u)	u = uf[u];
+	while (dj[u] != u)	u = dj[u];
 	return u;
 }
-bool uf_union(int u, int v)
+bool dj_union(int u, int v)
 {
-	int ru = uf_find(u), rv = uf_find(v);
-	uf[rv] = ru;
+	int ru = dj_find(u), rv = dj_find(v);
+	dj[rv] = ru;
 	return ru != rv;
 }
 
@@ -98,10 +98,10 @@ int main()
 			if (D[i][j] < INF)
 				pq.push({ -D[i][j], i, j });
 	int cnt = 0, ans = 0;
-	uf_init(C);
+	dj_init(C);
 	while (!pq.empty()) {
 		auto [cost, i, j] = pq.top(); pq.pop();
-		if (uf_union(i, j))
+		if (dj_union(i, j))
 			cnt++, ans += -cost;
 	}
 	printf("%d", cnt == C - 1 ? ans : -1);
