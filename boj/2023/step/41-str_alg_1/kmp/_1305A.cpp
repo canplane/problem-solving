@@ -1,3 +1,6 @@
+// S의 최소 주기는 S의 길이에서 마지막 fail 값을 뺀 값과 동일하다.
+// 증명: https://www.acmicpc.net/board/view/122146
+
 #include <cstdio>
 
 char s[1000001];
