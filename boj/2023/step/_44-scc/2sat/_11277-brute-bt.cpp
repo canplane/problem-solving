@@ -20,12 +20,12 @@ void check()
 		sat = true;
 	}
 }
-void dfs(int n_i)
+void bt(int n_i)
 {
 	check();
 	for (int i = n_i; i <= N; i++) {
 		val[i] = true;
-		dfs(i + 1);
+		bt(i + 1);
 		val[i] = false;
 	}
 }
@@ -42,6 +42,6 @@ int main()
 	}
 
 	sat = false;
-	dfs(1);
+	bt(1);
 	printf("%d", sat);
 }

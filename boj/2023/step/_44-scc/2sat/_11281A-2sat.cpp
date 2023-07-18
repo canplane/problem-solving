@@ -75,7 +75,7 @@ int main()
 	if (sat) {
 		for (auto it = sccs.rbegin(); it != sccs.rend(); it++) {
 			for (int v : *it) {
-				val[v] = (val[SZ - v] == 1) ? 2 : 1;
+				val[v] = (val[SZ - v] == 1) + 1;	// 1 바이어스. 가능하면 false 할당.
 			}
 		}
 		for (int x = 1; x <= N; x++) {
