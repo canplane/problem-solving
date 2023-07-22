@@ -1,6 +1,6 @@
 /*
 	* 틀린 요인
-		* long long: stol()
+		* long: stol()
 */
 
 using namespace std;

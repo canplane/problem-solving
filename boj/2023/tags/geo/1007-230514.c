@@ -11,7 +11,7 @@ void combi(int n, int n_i, int r, int r_i)
 {
 	int i;
 	if (r_i == r) {
-		long long X, Y, X1, Y1;
+		long X, Y, X1, Y1;
 		X = Y = X1 = Y1 = 0;
 		for (i = 0; i < n; i++)
 			X += P[0][i], Y += P[1][i];
