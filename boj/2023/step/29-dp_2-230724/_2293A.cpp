@@ -1,3 +1,5 @@
+// https://velog.io/@jxlhe46/백준-2293번.-동전-1-bfi120m5
+
 #include <cstdio>
 
 int n, k;
