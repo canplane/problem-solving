@@ -1,3 +1,5 @@
+// BOJ 2629 G3 양팔저울
+
 using namespace std;
 #include <bits/stdc++.h>
 
