@@ -1,3 +1,5 @@
+# BOJ 1874 S2 스택 수열
+
 import sys
 input = lambda: sys.stdin.readline().rstrip()
 
