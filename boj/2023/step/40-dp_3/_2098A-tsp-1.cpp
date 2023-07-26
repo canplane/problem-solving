@@ -1,3 +1,6 @@
+// BOJ 2098 G1 외판원 순회
+// vis를 dfs 몸통 부분에서 잠시 넣었다 빼는 버전
+
 using namespace std;
 #include <bits/stdc++.h>
 #define INF ((1L << 30) - 1)

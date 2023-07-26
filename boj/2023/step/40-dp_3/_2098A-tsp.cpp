@@ -1,3 +1,6 @@
+// BOJ 2098 G1 외판원 순회
+// 먼저 top-down dfs brute로 짜고 dp 넣으면 쉽다.
+
 using namespace std;
 #include <bits/stdc++.h>
 #define INF ((1L << 30) - 1)
@@ -5,6 +8,7 @@ using namespace std;
 int N;
 int adj[16][16];
 int dp[16][1 << 16];
+// dp[current node][visited nodes up to now]: distance to node 0 by passing through left nodes
 
 int dfs(int v, int vis)
 {
