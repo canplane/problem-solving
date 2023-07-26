@@ -1,3 +1,5 @@
+// BOJ 2110 G4 공유기 설치
+
 using namespace std;
 #include <cstdio>
 #include <algorithm>

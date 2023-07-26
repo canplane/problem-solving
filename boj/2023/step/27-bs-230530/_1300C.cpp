@@ -1,3 +1,5 @@
+// BOJ 1300 G2 K번째 수
+
 using namespace std;
 #include <cstdio>
 #include <algorithm>
