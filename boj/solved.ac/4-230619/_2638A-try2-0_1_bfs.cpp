@@ -1,5 +1,5 @@
 // BOJ 2638 G3 치즈
-// 0-1 BFS
+// 0-1 BFS: 이렇게도 풀 수 있음.
 
 using namespace std;
 #include <bits/stdc++.h>
