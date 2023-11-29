@@ -5,27 +5,27 @@
 using namespace std;
 #include <bits/stdc++.h>
 
-long P[10];
-long dp[10][10];
+long P[10];  // P[w] = 10^w
+long dp[10][10];  // dp[w][i] = cnt(false, 10^w)[i] : [0, 10^w)에서의 0-9 카운팅 (zeropad 포함: 1 -> 001)
 
 long C[10];
-void cnt(bool l, long r, int w)
+void cnt(bool nozeropad, long r, int w)
 {
 	if (w >= 0) {
 		long d = r / P[w];
 
-		for (int i = l; i < d; i++)
+		for (int i = nozeropad; i < d; i++)
 			C[i] += P[w];
 
-		if (l)
+		if (nozeropad)
 			cnt(1, P[w], w - 1);
 		if (w >= 1)
 			for (int i = 0; i < 10; i++)
-				C[i] += (d - l) * dp[w - 1][i];
+				C[i] += (d - nozeropad) * dp[w - 1][i];
 
 		r = r % P[w];
 		if (r > 0)
-			C[d] += r, cnt(0, r, w - 1);
+			C[d] += r, cnt(false, r, w - 1);
 	}
 }
 
@@ -49,7 +49,7 @@ int main()
 		if (N < 10 * P[w])
 			break;
 
-	cnt(1, N + 1, w);
+	cnt(true, N + 1, w);
 	for (long e : C)
 		printf("%ld ", e);
 }
